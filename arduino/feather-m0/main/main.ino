@@ -25,36 +25,16 @@ void setup() {
   // start & clear the display
   display.begin();
   display.clearDisplay();
-
-  // Several shapes are drawn centered on the screen.  Calculate 1/2 of
-  // lesser of display width or height, this is used repeatedly later.
-  minorHalfSize = min(display.width(), display.height()) / 2;
+  display.setTextSize(2);
+  display.setTextColor(BLACK);
+  display.setCursor(0,0);
+  display.println("ActionWatch 1.0");
 
   // led
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
-  for(int i=0; i<4; i++) {
-    display.setRotation(i);
-    display.clearDisplay();
-    // text display tests
-    display.setTextSize(1);
-    display.setTextColor(BLACK);
-    display.setCursor(0,0);
-    display.println("Hello, world!");
-    display.setTextColor(WHITE, BLACK); // inverted text
-    display.println(3.141592);
-    display.setTextSize(2);
-    display.setTextColor(BLACK);
-    display.print("0x"); display.println(0xDEADBEEF, HEX);
-    // Screen must be refreshed at least once per second
-    for(int j=0; j<4; j++) {
-      display.refresh();
-      digitalWrite(LED_BUILTIN, HIGH);
-      delay(250);
-      digitalWrite(LED_BUILTIN, LOW);
-      delay(250);
-    }
-  }
+  display.refresh();
+  delay(1000);
 }
